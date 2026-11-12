@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<meta content="Approachable intermediate HTML training with everyday examples and interactive practice." name="description"/>
+<title>Intermediate HTML | Software Training Encyclopedia</title>
+<link rel="stylesheet" href="html.css"/>
+</head>
+<body>
+<div class="layout">
+<aside aria-label="Lesson navigation">
+<a class="back-dashboard" href="../../index.html">← Training Encyclopedia Dashboard</a>
+<strong>Software Training Encyclopedia</strong>
+<div class="toc-label">INTERMEDIATE HTML</div>
+<nav>
+<a href="#overview">Overview</a><a href="#semantics">1. Semantics</a><a href="#attributes">2. Attributes</a><a href="#forms">3. Forms</a><a href="#tables">4. Tables</a><a href="#css">5. HTML + CSS</a><a href="#javascript">6. HTML + JavaScript</a><a href="#architecture">7. Architecture</a><a href="#accessibility">8. Accessibility</a><a href="#integration">9. Your Tech Stack</a><a href="#quiz">Knowledge Check</a><a href="#project">Practice Project</a>
+</nav>
+</aside>
+<main>
+<header id="overview">
+<span class="eyebrow">Software Training / Web Development</span>
+<h1>HTML: Intermediate Fundamentals</h1>
+<p class="lead">Build your understanding of HTML one step at a time using familiar examples like a personal to-do list, shopping list, and simple website.</p>
+<span class="pill">Intermediate</span><span class="pill">9 lessons</span><span class="pill">Everyday examples</span><span class="pill">Interactive module</span>
+<div class="controls"><button onclick="window.print()" type="button">Print / Save as PDF</button><button class="secondary" id="resetProgress" type="button">Reset progress</button></div>
+<p class="small muted">Lesson completion is saved in this browser for this file.</p>
+<div aria-label="Lesson completion" aria-valuemax="9" aria-valuemin="0" aria-valuenow="0" class="progress" id="progressTrack" role="progressbar"><div id="progressFill"></div></div><p class="small" id="progressText">0 of 9 lessons complete</p>
+<div class="analogy"><h3>Start with a simple picture</h3><p>Imagine building a small website to keep track of your groceries. <strong>HTML</strong> puts the title, shopping items, buttons, and forms on the page. <strong>CSS</strong> makes them look neat. <strong>JavaScript</strong> makes the Add Item button work. A <strong>server/API</strong> could save the list so it is still there when you return tomorrow.</p><p><strong>Remember:</strong> HTML = what is on the page; CSS = how it looks; JavaScript = what happens when you interact.</p></div>
+</header>
+<section class="section" id="semantics"><span class="eyebrow">Lesson 01</span><h2>Semantic HTML: Give Each Part a Clear Job</h2><p>HTML is made of <strong>elements</strong>, usually written with an opening tag and a closing tag. For example, <code>&lt;p&gt;Hello&lt;/p&gt;</code> creates a paragraph. <em>Semantic</em> HTML means choosing tags that describe what the content actually is, instead of using a generic <code>&lt;div&gt;</code> for everything.</p><div class="analogy"><h3>Everyday analogy: organizing a house</h3><p>A kitchen, bedroom, and bathroom all have different jobs. A web page is easier to understand when its sections have names too: <code>&lt;header&gt;</code> for the top, <code>&lt;nav&gt;</code> for navigation, <code>&lt;main&gt;</code> for the important content, and <code>&lt;footer&gt;</code> for the bottom.</p></div><h3>Example: a recipe website</h3><pre><code>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+  &lt;meta charset="UTF-8"&gt;
+  &lt;title&gt;My Recipes&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+  &lt;header&gt;&lt;h1&gt;My Recipes&lt;/h1&gt;&lt;/header&gt;
+  &lt;nav&gt;&lt;a href="#breakfast"&gt;Breakfast&lt;/a&gt;&lt;/nav&gt;
+  &lt;main&gt;
+    &lt;section id="breakfast"&gt;
+      &lt;h2&gt;Breakfast&lt;/h2&gt;
+      &lt;article&gt;&lt;h3&gt;Pancakes&lt;/h3&gt;&lt;p&gt;Easy recipe.&lt;/p&gt;&lt;/article&gt;
+    &lt;/section&gt;
+  &lt;/main&gt;
+  &lt;footer&gt;Made at home&lt;/footer&gt;
+&lt;/body&gt;
+&lt;/html&gt;</code></pre><div class="panel"><h3>Read the example slowly</h3><p><code>&lt;head&gt;</code> holds information about the page, such as its title; it is not the visible page heading. <code>&lt;body&gt;</code> contains what visitors see. <code>&lt;h1&gt;</code> is the main heading, <code>&lt;h2&gt;</code> is a section heading, and <code>&lt;h3&gt;</code> is a heading within that section. <code>&lt;article&gt;</code> is a piece of content that makes sense on its own, like a recipe or blog post.</p></div><p><strong>Why this matters:</strong> browsers, screen readers, search engines, and other developers can understand the structure more easily. The browser also builds a tree of these elements called the <strong>DOM</strong>, which JavaScript can work with later.</p><label class="lesson-done"><input data-lesson="semantics" type="checkbox"/> Mark lesson complete</label></section>
+<section class="section" id="attributes"><span class="eyebrow">Lesson 02</span><h2>Attributes, IDs, Classes &amp; Custom Data</h2><p>An <strong>attribute</strong> is extra information inside an opening HTML tag. Think of the tag as an object and its attributes as labels attached to that object. For example, a link uses <code>href</code> to say where it goes.</p><pre><code>&lt;a href="https://example.com"&gt;Visit website&lt;/a&gt;
+&lt;p id="welcome" class="message friendly"&gt;Hello!&lt;/p&gt;
+&lt;button type="button" data-action="add"&gt;Add item&lt;/button&gt;</code></pre><div class="table-wrap"><table><thead><tr><th>Attribute</th><th>Plain-English meaning</th><th>Example</th></tr></thead><tbody><tr><td><code>id</code></td><td>One element's unique name on this page</td><td><code>id="welcome"</code></td></tr><tr><td><code>class</code></td><td>A reusable group name; many elements can share it</td><td><code>class="message"</code></td></tr><tr><td><code>href</code></td><td>Where a link takes you</td><td><code>href="about.html"</code></td></tr><tr><td><code>name</code></td><td>The name used when sending a form field</td><td><code>name="email"</code></td></tr><tr><td><code>data-*</code></td><td>Extra information for JavaScript</td><td><code>data-action="add"</code></td></tr></tbody></table></div><div class="analogy"><h3>Everyday analogy: people and teams</h3><p>An <code>id</code> is like one person's employee number: it identifies one person. A <code>class</code> is like the label “team member”: many people can share it. A <code>data-*</code> attribute is like a sticky note with extra details.</p></div><p><strong>Remember:</strong> use unique IDs, reuse classes, and never put passwords or secret keys into HTML attributes. Visitors can inspect them.</p><label class="lesson-done"><input data-lesson="attributes" type="checkbox"/> Mark lesson complete</label></section>
+<section class="section" id="forms"><span class="eyebrow">Lesson 03</span><h2>Forms: Let People Enter Information</h2><p>A <strong>form</strong> groups input fields so a person can type information and submit it. A <code>&lt;label&gt;</code> tells them what to enter; an <code>&lt;input&gt;</code> is the box; and a <code>&lt;button&gt;</code> submits the form. The input's <code>name</code> is the key used when its value is sent.</p><h3>Example: search for a book</h3><pre><code>&lt;form action="/books/search" method="get"&gt;
+  &lt;label for="book-title"&gt;Book title&lt;/label&gt;
+  &lt;input id="book-title" name="title" required&gt;
+  &lt;button type="submit"&gt;Search&lt;/button&gt;
+&lt;/form&gt;</code></pre><div class="panel"><h3>What happens when you submit?</h3><p><strong>1.</strong> The browser checks simple rules such as <code>required</code>. <strong>2.</strong> With <code>method="get"</code>, it usually places the field in the URL, such as <code>/books/search?title=Hobbit</code>. <strong>3.</strong> The server can use that information to find matching books. <strong>POST</strong> generally puts submitted values in the request body and is common for creating or updating information. Neither method replaces HTTPS or server-side validation.</p></div><div class="exercise"><h3>Try it: a shopping-list form</h3><p class="small muted">This example runs only in your browser. Nothing is sent or saved to a server.</p><form id="coilDemo"><label for="coilIdDemo">Item name</label><input id="coilIdDemo" minlength="2" name="item" placeholder="e.g., Apples" required=""/><label for="standDemo">Category</label><select id="standDemo" name="category"><option>Groceries</option><option>Household</option><option>Other</option></select><p><button type="submit">Check item</button></p></form><p class="status" id="formOutput" role="status"></p></div><div class="analogy"><h3>Everyday analogy: filling out a paper form</h3><p>HTML validation is like the form telling you “You forgot your name.” The server must still check the information, just as a clerk would verify a submitted form before accepting it.</p></div><label class="lesson-done"><input data-lesson="forms" type="checkbox"/> Mark lesson complete</label></section>
+<section class="section" id="tables"><span class="eyebrow">Lesson 04</span><h2>Tables: Organize Rows and Columns</h2><p>Use an HTML table when data naturally belongs in a grid, like a school schedule or a price list. A <strong>row</strong> goes across; a <strong>column</strong> goes down. Use <code>&lt;th&gt;</code> for headings and <code>&lt;td&gt;</code> for ordinary cells.</p><pre><code>&lt;table&gt;
+  &lt;caption&gt;Shopping list&lt;/caption&gt;
+  &lt;thead&gt;
+    &lt;tr&gt;&lt;th scope="col"&gt;Item&lt;/th&gt;&lt;th scope="col"&gt;Price&lt;/th&gt;&lt;/tr&gt;
+  &lt;/thead&gt;
+  &lt;tbody&gt;
+    &lt;tr&gt;&lt;th scope="row"&gt;Apples&lt;/th&gt;&lt;td&gt;$3&lt;/td&gt;&lt;/tr&gt;
+  &lt;/tbody&gt;
+&lt;/table&gt;</code></pre><div class="table-wrap"><table><caption class="muted small">Example grocery budget</caption><thead><tr><th scope="col">Item</th><th scope="col">Estimated price</th><th scope="col">In cart?</th></tr></thead><tbody><tr><th scope="row">Apples</th><td>$3</td><td>Yes</td></tr><tr><th scope="row">Milk</th><td>$4</td><td>No</td></tr><tr><th scope="row">Bread</th><td>$3</td><td>Yes</td></tr></tbody></table></div><div class="panel"><h3>How the pieces fit</h3><p><code>&lt;table&gt;</code> starts the table. <code>&lt;caption&gt;</code> names it. <code>&lt;thead&gt;</code> contains the header area, <code>&lt;tbody&gt;</code> contains the main rows, and <code>&lt;tr&gt;</code> starts each row. <code>scope="col"</code> means a header describes a column; <code>scope="row"</code> means it describes a row.</p></div><p><strong>Common mistake:</strong> do not use tables simply to put two boxes next to each other. CSS Grid or Flexbox is better for page layout.</p><label class="lesson-done"><input data-lesson="tables" type="checkbox"/> Mark lesson complete</label></section>
+<section class="section" id="css"><span class="eyebrow">Lesson 05</span><h2>HTML + CSS: Content Versus Appearance</h2><p>HTML says <em>what something is</em>. CSS says <em>what it looks like</em>. A heading is still a heading whether it is blue, red, large, or small. CSS lets you change the design without rewriting the content.</p><div class="analogy"><h3>Everyday analogy: furnishing a room</h3><p>HTML is the room's furniture list: table, chair, lamp. CSS decides where the furniture goes, its colors, and its sizes. JavaScript, which comes next, is like the light switch that makes something happen.</p></div><h3>Example: style a shopping-list card</h3><pre><code>&lt;div class="item-card"&gt;Apples — $3&lt;/div&gt;
+
+&lt;style&gt;
+  .item-card {
+    padding: 16px;
+    border: 1px solid gray;
+    border-radius: 8px;
+  }
+&lt;/style&gt;</code></pre><p>The period in <code>.item-card</code> means “find elements with this class.” A selector starting with <code>#</code> finds a specific ID. A selector such as <code>p</code> finds all paragraph elements.</p><div aria-label="Example shopping summary cards" class="grid"><div class="panel"><span class="muted">Items</span><div class="kpi">3</div><span class="small">Example</span></div><div class="panel"><span class="muted">Budget</span><div class="kpi">$20</div><span class="small">Example</span></div><div class="panel"><span class="muted">Estimated total</span><div class="kpi">$10</div><span class="small">Example</span></div></div><div class="panel"><h3>What does responsive mean?</h3><p>A responsive layout adjusts to screen size. CSS Grid can show three cards across on a laptop and one card per row on a phone. A <code>@media</code> rule lets you apply styles only at certain screen widths.</p></div><pre><code>.cards { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+@media (max-width: 700px) {
+  .cards { grid-template-columns: 1fr; }
+}</code></pre><label class="lesson-done"><input data-lesson="css" type="checkbox"/> Mark lesson complete</label></section>
+<section class="section" id="javascript"><span class="eyebrow">Lesson 06</span><h2>HTML + JavaScript: Make the Page Respond</h2><p>HTML can display a button, but JavaScript is what makes that button do something. The browser turns HTML into a collection of objects called the <strong>DOM (Document Object Model)</strong>. JavaScript can find those objects, listen for clicks, and change their text.</p><h3>Example: update a number when clicked</h3><pre><code>&lt;p&gt;Items in cart: &lt;strong id="count"&gt;0&lt;/strong&gt;&lt;/p&gt;
+&lt;button id="add" type="button"&gt;Add one&lt;/button&gt;
+&lt;script&gt;
+  let count = 0;
+  document.querySelector('#add').addEventListener('click', () =&gt; {
+    count = count + 1;
+    document.querySelector('#count').textContent = count;
+  });
+&lt;/script&gt;</code></pre><div class="panel"><h3>Breaking down the JavaScript</h3><p><code>querySelector('#add')</code> finds the button with the ID <code>add</code>. <code>addEventListener('click', ...)</code> waits for a click. <code>count = count + 1</code> increases the number. <code>textContent</code> updates what the user sees without reloading the page.</p></div><div class="exercise"><h3>Try it: items in a cart</h3><p>Items in cart: <strong id="liveTons">0</strong></p><button id="refreshDemo" type="button">Add one item</button><p class="small muted" id="refreshMessage" role="status">Click to change the number using JavaScript.</p></div><h3>What if the information comes from a server?</h3><p>JavaScript can use <code>fetch()</code> to request information from an API. An API might return <strong>JSON</strong>, a common text format for structured data.</p><pre><code>async function loadCart() {
+  const response = await fetch('/api/cart');
+  if (!response.ok) throw new Error('Could not load cart');
+  const cart = await response.json();
+  document.querySelector('#count').textContent = cart.itemCount;
+}</code></pre><p><strong>Flow:</strong> browser asks API → server finds data → server sends JSON → JavaScript updates HTML. This is an illustration; the training page does not connect to an actual API.</p><div class="panel"><h3>Safety tip</h3><p>Use <code>textContent</code> for ordinary text, especially when it came from another person. Putting untrusted content into <code>innerHTML</code> can allow malicious HTML or scripts to run.</p></div><label class="lesson-done"><input data-lesson="javascript" type="checkbox"/> Mark lesson complete</label></section>
+<section class="section" id="architecture"><span class="eyebrow">Lesson 07</span><h2>Keeping HTML, CSS, and JavaScript Organized</h2><p>Small experiments can put everything in one HTML file, just like this lesson does. As a project grows, separating files makes it easier to find problems and make changes.</p><h3>Example: a simple shopping-list website</h3><pre><code>shopping-list/
+├── index.html       # Page content and structure
+├── css/
+│   └── styles.css   # Colors, spacing, layout
+└── js/
+    └── app.js       # Clicks, updates, API calls</code></pre><p>The HTML file can point to the other files:</p><pre><code>&lt;link rel="stylesheet" href="css/styles.css"&gt;
+&lt;script src="js/app.js" defer&gt;&lt;/script&gt;</code></pre><div class="panel"><h3>What do these paths mean?</h3><p><code>css/styles.css</code> means “open the <code>css</code> folder next to this HTML file, then load <code>styles.css</code>.” <code>../</code> means “go up one folder.” A leading <code>/</code> usually starts at the website root. <code>defer</code> tells the browser to wait until the HTML is parsed before running the external script.</p></div><div class="analogy"><h3>Everyday analogy: keeping a desk tidy</h3><p>HTML, CSS, and JavaScript are like separate folders for documents, photos, and receipts. You <em>could</em> throw everything into one folder, but finding and fixing things becomes harder over time.</p></div><p><strong>Repository note:</strong> adding a new lesson HTML file does not automatically make it appear in your encyclopedia navigation. If your repository uses a JavaScript lesson list, that list may also need an entry pointing to the new file.</p><label class="lesson-done"><input data-lesson="architecture" type="checkbox"/> Mark lesson complete</label></section>
+<section class="section" id="accessibility"><span class="eyebrow">Lesson 08</span><h2>Accessibility and Debugging: Make It Usable</h2><p><strong>Accessibility</strong> means designing pages that more people can use, including people navigating by keyboard or using a screen reader. Good HTML often gives you accessible behavior automatically when you use the right elements.</p><div class="table-wrap"><table><thead><tr><th>Do this</th><th>Why it helps</th></tr></thead><tbody><tr><td>Use <code>&lt;button&gt;</code> for actions</td><td>Keyboard users can activate it easily</td></tr><tr><td>Connect <code>&lt;label&gt;</code> to an input</td><td>People know what the box is asking for</td></tr><tr><td>Use descriptive link names</td><td>“View recipes” is clearer than “Click here”</td></tr><tr><td>Add <code>alt</code> text to meaningful images</td><td>Screen readers can describe the image</td></tr><tr><td>Show words as well as colors</td><td>“Out of stock” is clearer than a red dot alone</td></tr><tr><td>Use headings in order</td><td>Readers can understand the page outline</td></tr></tbody></table></div><h3>When something does not work</h3><p>Open your browser's <strong>Developer Tools</strong> (often F12 on Windows). The <strong>Elements</strong> tab shows the page structure. The <strong>Console</strong> shows JavaScript errors. The <strong>Network</strong> tab shows whether files and API requests loaded successfully.</p><div class="analogy"><h3>Everyday analogy: checking why a lamp is off</h3><p>You do not immediately buy a new lamp. You check the switch, bulb, and outlet. Debugging a website is similar: check the HTML element, JavaScript error, and network request to locate the actual problem.</p></div><label class="lesson-done"><input data-lesson="accessibility" type="checkbox"/> Mark lesson complete</label></section>
+<section class="section" id="integration"><span class="eyebrow">Lesson 09</span><h2>How HTML Works with C#, Blazor, APIs, and Databases</h2><p>Even when you build a more advanced application, the browser still needs a page it can display. HTML is that page's basic structure. Other technologies help create the page, process requests, or store information.</p><div class="table-wrap"><table><thead><tr><th>Technology</th><th>Simple explanation</th><th>Shopping-list example</th></tr></thead><tbody><tr><td>HTML</td><td>Describes the page</td><td>Shows items and buttons</td></tr><tr><td>CSS</td><td>Styles the page</td><td>Colors and spaces the item cards</td></tr><tr><td>JavaScript</td><td>Handles browser interactions</td><td>Updates the item count</td></tr><tr><td>ASP.NET Core</td><td>C# framework for web apps and APIs</td><td>Receives requests to save items</td></tr><tr><td>Blazor</td><td>Builds interactive web UI with C# components</td><td>Creates a reusable shopping-item component</td></tr><tr><td>REST API</td><td>Provides an HTTP interface to data or actions</td><td>Returns the saved shopping list as JSON</td></tr><tr><td>SQL Server / Oracle</td><td>Stores data on the backend</td><td>Stores item names and quantities</td></tr><tr><td>Python / FastAPI</td><td>Another way to create a backend API</td><td>Provides an item-search endpoint</td></tr></tbody></table></div><h3>Follow one request</h3><pre><code>Person clicks “Show my list”
+           ↓
+JavaScript or Blazor requests /api/items
+           ↓
+ASP.NET Core API receives the request
+           ↓
+API reads saved items from a database
+           ↓
+API returns JSON
+           ↓
+Browser shows the items in HTML</code></pre><div class="panel"><h3>What HTML cannot do by itself</h3><p>HTML alone cannot securely save information to a database, check a password against a server, or run backend C# code. Those jobs belong to server-side software. The browser should not contain database passwords or direct database connection credentials.</p></div><p><strong>Big picture:</strong> learning HTML first makes CSS, JavaScript, ASP.NET Core, and Blazor easier to understand because you can recognize what the browser ultimately displays.</p><label class="lesson-done"><input data-lesson="integration" type="checkbox"/> Mark lesson complete</label></section>
+<section class="section" id="quiz"><span class="eyebrow">Knowledge Check</span><h2>Test Your Understanding</h2><p>Choose one answer for each question, then check your score.</p>
+<form id="quizForm">
+<div class="quiz-item"><strong>1. Which element should contain the primary content of a page?</strong><label><input name="q1" type="radio" value="a"/> <code>&lt;footer&gt;</code></label><label><input name="q1" type="radio" value="b"/> <code>&lt;main&gt;</code></label><label><input name="q1" type="radio" value="c"/> <code>&lt;span&gt;</code></label></div>
+<div class="quiz-item"><strong>2. Which attribute should normally be unique within a document?</strong><label><input name="q2" type="radio" value="a"/> <code>class</code></label><label><input name="q2" type="radio" value="b"/> <code>data-area</code></label><label><input name="q2" type="radio" value="c"/> <code>id</code></label></div>
+<div class="quiz-item"><strong>3. Which HTTP method commonly puts search form values in the URL?</strong><label><input name="q3" type="radio" value="a"/> GET</label><label><input name="q3" type="radio" value="b"/> POST</label><label><input name="q3" type="radio" value="c"/> PATCH</label></div>
+<div class="quiz-item"><strong>4. Which element represents a table header cell?</strong><label><input name="q4" type="radio" value="a"/> <code>&lt;td&gt;</code></label><label><input name="q4" type="radio" value="b"/> <code>&lt;th&gt;</code></label><label><input name="q4" type="radio" value="c"/> <code>&lt;tr&gt;</code></label></div>
+<div class="quiz-item"><strong>5. Which technology primarily controls visual styling?</strong><label><input name="q5" type="radio" value="a"/> HTML</label><label><input name="q5" type="radio" value="b"/> CSS</label><label><input name="q5" type="radio" value="c"/> SQL</label></div>
+<div class="quiz-item"><strong>6. Which API is used to find and modify browser document elements?</strong><label><input name="q6" type="radio" value="a"/> DOM</label><label><input name="q6" type="radio" value="b"/> DNS</label><label><input name="q6" type="radio" value="c"/> TCP</label></div>
+<div class="quiz-item"><strong>7. Which property is safer for inserting untrusted plain text?</strong><label><input name="q7" type="radio" value="a"/> <code>innerHTML</code></label><label><input name="q7" type="radio" value="b"/> <code>textContent</code></label><label><input name="q7" type="radio" value="c"/> <code>outerHTML</code></label></div>
+<div class="quiz-item"><strong>8. Where should authoritative validation of submitted values happen?</strong><label><input name="q8" type="radio" value="a"/> Only in browser</label><label><input name="q8" type="radio" value="b"/> On the server</label><label><input name="q8" type="radio" value="c"/> Only in CSS</label></div>
+<div class="quiz-item"><strong>9. How should a website normally access saved data in a SQL database?</strong><label><input name="q9" type="radio" value="a"/> Put database passwords in HTML</label><label><input name="q9" type="radio" value="b"/> Put SQL commands in CSS</label><label><input name="q9" type="radio" value="c"/> Via a secured backend API</label></div>
+<button type="submit">Grade quiz</button><p class="status" id="quizResult" role="status"></p>
+</form>
+</section>
+<section class="section" id="project"><span class="eyebrow">Apply It</span><h2>Practice Project: Build a Shopping List</h2>
+<div class="exercise"><h3>Create a small shopping-list page</h3><p>Start with a page heading and a section for groceries. Add a table of items and estimated prices. Include a form with a labeled text field and a button. Use CSS to make the page readable on a phone. Use JavaScript to update an item counter when the button is clicked. Later, you can connect the page to an ASP.NET Core API so the list can be saved.</p><p><strong>Suggested order:</strong> HTML structure first → CSS appearance → JavaScript interaction → optional API connection.</p></div>
+<h3>Completion checklist</h3><ul><li>Use semantic headings and sections.</li><li>Give each form input a label and <code>name</code>.</li><li>Display tabular data using proper header cells.</li><li>Keep CSS and JavaScript responsibilities clear.</li><li>Update values with <code>textContent</code>, not untrusted HTML.</li><li>Test on narrow screens and with keyboard navigation.</li><li>Never put passwords or database connection strings in browser code.</li></ul>
+<p><strong>Next topic:</strong> CSS layout fundamentals, JavaScript DOM/events, or ASP.NET Core + Blazor components.</p>
+</section>
+<footer><p>Software Training Encyclopedia · Intermediate HTML · Everyday examples · Standalone learning module</p></footer>
+</main>
+</div>
+<script src="html.js" defer></script>
+</body>
+</html>

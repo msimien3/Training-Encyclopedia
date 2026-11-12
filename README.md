@@ -1,14 +1,17 @@
 # My Training Encyclopedia
 
-A static HTML, CSS, and JavaScript training site with one available topic: **HTTP Fundamentals**.
+A static HTML, CSS, and JavaScript training site with two available topics: **HTTP Fundamentals** and **HTML: Intermediate Fundamentals**.
 
 ## Files
 
 - `index.html` — dashboard shell
 - `style.css` — shared dashboard styles
-- `script.js` — dashboard behavior, search, theme toggle, and HTTP lesson navigation
+- `script.js` — dashboard behavior, search, theme toggle, and topic-specific navigation
 - `training/http/http.html` — six-lesson HTTP module with lesson completion, quiz, recap checklist, and print support
 - `training/http/http.css` — styles for the HTTP module
+- `training/html/html.html` — nine-lesson interactive HTML module
+- `training/html/html.css` — HTML module styles
+- `training/html/html.js` — HTML module interactions and progress tracking
 
 ## Upload to GitHub
 

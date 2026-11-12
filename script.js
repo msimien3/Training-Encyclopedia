@@ -4,7 +4,18 @@ const topics = [{
   category: "Software Development",
   level: "Beginner",
   description: "Learn requests and responses, HTTPS, methods, status codes, APIs, C# HttpClient, and how HTTP fits into networking.",
-  icon: "↔"
+  icon: "↔",
+  href: "training/http/http.html",
+  lessons: 6
+}, {
+  id: "html",
+  title: "HTML: Intermediate Fundamentals",
+  category: "Software Development",
+  level: "Intermediate",
+  description: "Explore semantic HTML, forms, tables, CSS and JavaScript integration, accessibility, and web application architecture through nine practical lessons.",
+  icon: "⌘",
+  href: "training/html/html.html",
+  lessons: 9
 }];
 
 const app = document.querySelector("#app");
@@ -16,7 +27,7 @@ function topicCard(topic) {
     <span class="pill">${topic.level}</span>
     <h3><span style="color:var(--accent)">${topic.icon}</span> ${topic.title}</h3>
     <p>${topic.description}</p>
-    <small style="color:var(--muted)">${topic.category} · Six lessons · Interactive quiz</small>
+    <small style="color:var(--muted)">${topic.category} · ${topic.lessons} lessons · Interactive quiz</small>
     <span class="arrow">Open lesson →</span>
   </article>`;
 }
@@ -35,24 +46,24 @@ function render() {
     app.innerHTML = `<section class="hero">
       <div class="eyebrow">Your learning platform</div>
       <h1>Learn. Build. Grow.</h1>
-      <p>A focused engineering knowledge library. Start with HTTP fundamentals, a practical foundation for web applications, APIs, dashboards, and production-data systems.</p>
-      <button id="explore" type="button">Explore HTTP Fundamentals →</button>
+      <p>A focused engineering knowledge library. Explore practical training modules covering web development, APIs, and the technologies behind modern software applications.</p>
+      <button id="explore" type="button">Explore Training Topics →</button>
     </section>
     <div class="stats">
-      <div class="stat"><strong>1</strong><span>Training topic</span></div>
-      <div class="stat"><strong>6</strong><span>Interactive lessons</span></div>
+      <div class="stat"><strong>${topics.length}</strong><span>Training topics</span></div>
+      <div class="stat"><strong>${topics.reduce((sum, topic) => sum + topic.lessons, 0)}</strong><span>Interactive lessons</span></div>
       <div class="stat"><strong>Free</strong><span>Static site · GitHub Pages ready</span></div>
     </div>
     <h2>Available Training</h2>
     ${visible.length ? `<div class="grid">${visible.map(topicCard).join("")}</div>` : `<div class="empty">No matching topics. Try another search.</div>`}`;
-    document.querySelector("#explore")?.addEventListener("click", openHttp);
+    document.querySelector("#explore")?.addEventListener("click", () => { location.hash = "library"; });
   }
   document.querySelectorAll("[data-id]").forEach(card => {
-    card.addEventListener("click", openHttp);
+    card.addEventListener("click", () => openTopic(card.dataset.id));
     card.addEventListener("keydown", event => {
       if (event.key === "Enter" || event.key === " ") {
         event.preventDefault();
-        openHttp();
+        openTopic(card.dataset.id);
       }
     });
   });
@@ -61,8 +72,9 @@ function render() {
   });
 }
 
-function openHttp() {
-  window.location.href = "training/http/http.html";
+function openTopic(id) {
+  const topic = topics.find(item => item.id === id);
+  if (topic) window.location.href = topic.href;
 }
 
 search.addEventListener("input", render);
